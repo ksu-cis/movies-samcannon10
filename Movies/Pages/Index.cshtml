@@ -4,6 +4,50 @@
 	ViewData["Title"] = "Home page";
 }
 
+<div class="container">
+	<div class="results">
+		@foreach (Movie movie in Model.Movies)
+		{
+			<div class="movie-entry" data-title="@movie.Title" data-mpaa="@movie.MPAA_Rating" data-imdb="@movie.IMDB_Rating">
+				<h2>
+					@movie.Title
+					@if (movie.Release_Year != null)
+					{
+						<span>(@movie.Release_Year)</span>
+					}
+				</h2>
+				@if (movie.Major_Genre != null)
+				{
+					<div class="genre">@movie.Major_Genre</div>
+				}
+				@if (movie.MPAA_Rating != null)
+				{
+					<div class="rating">Rated @movie.MPAA_Rating</div>
+				}
+				@if (movie.Director != null)
+				{
+					<div class="director">Directed by @movie.Director</div>
+				}
+				<div class="rating">
+					@if (movie.IMDB_Rating != null)
+					{
+						<div>
+							<span>IMDB</span>
+							@movie.IMDB_Rating
+						</div>
+					}
+					@if (movie.Rotten_Tomatoes_Rating != null)
+					{
+						<div>
+							<span>Rotten Tomatoes</span>
+							@movie.Rotten_Tomatoes_Rating
+						</div>
+					}
+				</div>
+			</div>
+		}
+	</div>
+</div>
 
 <h1>Movies</h1>
 
@@ -38,43 +82,4 @@
 	<input type="submit" value="Search" />
 </form>
 
-@foreach (Movie movie in Model.Movies)
-{
-	<div class="movie-entry">
-		<h2>
-			@movie.Title
-			@if (movie.Release_Year != null)
-			{
-				<span>(@movie.Release_Year)</span>
-			}
-		</h2>
-		@if (movie.Major_Genre != null)
-		{
-			<div class="genre">@movie.Major_Genre</div>
-		}
-		@if (movie.MPAA_Rating != null)
-		{ 
-			<div class="rating">Rated @movie.MPAA_Rating</div>
-		}
-		@if (movie.Director != null)
-		{ 
-			<div class="director">Directed by @movie.Director</div>
-		}
-		<div class="rating">
-			@if (movie.IMDB_Rating != null)
-			{
-				<div>
-					<span>IMDB</span>
-					@movie.IMDB_Rating
-				</div>
-			}
-			@if (movie.Rotten_Tomatoes_Rating != null)
-			{
-				<div>
-					<span>Rotten Tomatoes</span>
-					@movie.Rotten_Tomatoes_Rating
-				</div>
-			}
-		</div>
-	</div>
-}
+
